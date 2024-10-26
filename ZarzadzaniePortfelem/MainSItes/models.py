@@ -12,5 +12,9 @@ class UsersAccount(models.Model):
     borrowed = models.FloatField()
     UserKey = models.ForeignKey(User, on_delete=models.CASCADE)
 
+class Bank(models.Model):
+    balance = models.FloatField()
+    loans = models.FloatField()
+
 class placeholder(models.Model):
     pass
