@@ -8,5 +8,14 @@
     <header>
         <h2>Register now!</h2>
     </header>
+    <div>
+        <form method="POST" autocomplete="off">
+            {% csrf_token %}
+
+            {{ registerform.as_p }}
+
+            <input type="submit" value="Register">
+        </form>
+    </div>
 </body>
 </html>
