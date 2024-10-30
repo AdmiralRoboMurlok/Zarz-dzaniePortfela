@@ -3,6 +3,7 @@ from . forms import CreateUserForm, LoginForm
 from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from . models import *
 
 # Create your views here.
 def main(request):
@@ -17,6 +18,8 @@ def register(request):
 
             return redirect('login')
     context = {'registerform':form}
+
+
 
     return render(request, 'register.html', context=context)
 
@@ -47,4 +50,6 @@ def logout(request):
 def profile(request):
     return render(request, 'profile.html')
 
-
+@login_required(login_url="login")
+def wallet(request):
+    return render(request, 'wallet.html')
