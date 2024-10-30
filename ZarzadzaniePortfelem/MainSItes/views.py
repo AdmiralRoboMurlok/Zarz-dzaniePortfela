@@ -19,8 +19,6 @@ def register(request):
             return redirect('login')
     context = {'registerform':form}
 
-
-
     return render(request, 'register.html', context=context)
 
 def login(request):
@@ -44,7 +42,7 @@ def login(request):
 def logout(request):
     auth.logout(request)
 
-    return redirect("")
+    return redirect("main")
 
 @login_required(login_url="login")
 def profile(request):
@@ -52,4 +50,8 @@ def profile(request):
 
 @login_required(login_url="login")
 def wallet(request):
-    return render(request, 'wallet.html')
+    Model_Data = UsersAccount.objects.all()
+
+    return render(request, 'wallet.html', context={
+        "variables":Model_Data
+    })

@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="pl">
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <title>MainIndex</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <header>
         <h2>Welcome to the Main site</h2>
-        <button>Register</button>
-        <button>Login</button>
+        <a href="{% url 'register' %}">Register</a>
+        <a href="{% url 'login' %}">Login</a>
     </header>
 </body>
 </html>

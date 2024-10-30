@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <title>Wallet</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <header>
@@ -10,10 +12,13 @@
         <a href="{% url 'logout' %}">Logout</a>
     </header>
     <div id="upper">
-
+        {% for var in variables %}
+            Balance: {{ var.balance }}
+            Balance: {{ var.borrowed }}
+        {% endfor %}
     </div>
     <div id="lower">
-
+        <p>Histroy</p>
     </div>
 </body>
 </html>
