@@ -55,3 +55,11 @@ def wallet(request):
     return render(request, 'wallet.html', context={
         "variables":Model_Data
     })
+
+@login_required(login_url="login")
+def deposit(request):
+    return render(request, 'deposit.html')
+
+@login_required(login_url="login")
+def withdraw(request):
+    return render(request, 'withdraw.hmtl')
