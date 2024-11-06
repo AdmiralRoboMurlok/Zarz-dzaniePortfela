@@ -4,7 +4,7 @@
     {% load static %}
     <meta charset="UTF-8">
     <title>Wallet</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="../static/css/styles.css">
 </head>
 <body>
     <header>
@@ -13,13 +13,13 @@
         <a href="{% url 'withdraw' %}">Withdraw</a>
         <a href="{% url 'logout' %}">Logout</a>
     </header>
-    <div id="upper">
+    <div id="leftWal">
         {% for var in variables %}
             Balance: {{ var.balance }}
             Balance: {{ var.borrowed }}
         {% endfor %}
     </div>
-    <div id="lower">
+    <div id="rightWal">
         <p>Histroy</p>
     </div>
 </body>

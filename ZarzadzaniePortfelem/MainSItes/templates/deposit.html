@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Deposit</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
 </head>
 <body>
     <header>
@@ -10,5 +11,14 @@
         <a href="{% url 'wallet' %}">Wallet</a>
         <a href="{% url 'logout' %}">Logout</a>
     </header>
+
+    <div>
+        <form method="post" action="{% url 'deposit' %}">
+            {% csrf_token %}
+
+
+            <button type="submit">Wyślij</button>
+        </form>
+    </div>
 </body>
 </html>

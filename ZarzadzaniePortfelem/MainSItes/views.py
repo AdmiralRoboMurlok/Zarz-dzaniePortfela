@@ -62,4 +62,4 @@ def deposit(request):
 
 @login_required(login_url="login")
 def withdraw(request):
-    return render(request, 'withdraw.hmtl')
+    return render(request, 'withdraw.html')

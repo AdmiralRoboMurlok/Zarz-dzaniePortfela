@@ -1,16 +1,16 @@
 #header {
     float: left;
     height: 160px;
-    background-color: darkcyan;
+    background-color: Seagreen;
     width: 100%;
 }
 
-#upper {
+#leftWal {
     width: 50%;
     float: left;
 }
 
-#lower {
+#rightWal {
     width: 50%;
     float: left;
 }
