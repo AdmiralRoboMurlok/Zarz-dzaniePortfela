@@ -60,7 +60,7 @@ def wallet(request):
 def deposit(request, pk):
     if request.method == 'POST':
         deposit = float(request.POST.get('AddMon'))
-        total = UsersAccount.objects.get(pk=pk)
+        total = UsersAccount.objects.get(id=pk)
         total = total + deposit
 
         total.save()
