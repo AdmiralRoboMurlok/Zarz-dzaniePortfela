@@ -1,16 +1,46 @@
-#header {
-    float: left;
-    height: 160px;
+#walletHead{
     background-color: Seagreen;
-    width: 100%;
+}
+
+#walletHeadL{
+    width: 75%;
+    float: left;
+    background-color: Seagreen;
+    height: 60px;
+}
+
+#walletHeadR{
+    width: 25%;
+    float: left;
+    background-color: Seagreen;
+    height: 60px;
 }
 
 #leftWal {
     width: 50%;
     float: left;
+    background-color: white;
 }
 
 #rightWal {
     width: 50%;
     float: left;
+}
+
+#depoHeadL{
+    width: 75%;
+    float: left;
+    background-color: Seagreen;
+    height: 60px;
+}
+
+#depoHeadR{
+    width: 25%;
+    float: left;
+    background-color: Seagreen;
+    height: 60px;
+}
+
+#mid{
+    background-color: dimgray;
 }

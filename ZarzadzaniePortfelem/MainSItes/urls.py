@@ -9,6 +9,6 @@ urlpatterns = [
     path('logout', views.logout, name="logout"),
     path('profile', views.profile, name="profile"),
     path('wallet', views.wallet, name="wallet"),
-    path('deposit', views.deposit, name="deposit"),
+    path('deposit/<int:pk>', views.deposit, name="deposit"),
     path('withdraw', views.withdraw, name="withdraw")
 ]

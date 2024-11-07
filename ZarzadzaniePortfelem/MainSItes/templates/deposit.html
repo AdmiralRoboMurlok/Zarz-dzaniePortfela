@@ -7,17 +7,23 @@
 </head>
 <body>
     <header>
-        <h3>Deposit</h3>
-        <a href="{% url 'wallet' %}">Wallet</a>
-        <a href="{% url 'logout' %}">Logout</a>
+        <div id="depoHeadL">
+            <h3>Deposit</h3>
+        </div>
+
+        <div id="depoHeadR">
+            <a href="{% url 'wallet' %}">Wallet</a>
+            <a href="{% url 'logout' %}">Logout</a>
+        </div>
     </header>
 
-    <div>
+    <div id="mid">
         <form method="post" action="{% url 'deposit' %}">
             {% csrf_token %}
+            <label for="AddMon">Deposit money: </label>
+            <input type="number" id="AddMon" name="AddMon" value=""><br><br>
 
-
-            <button type="submit">Wyślij</button>
+            <button type="submit" value="depo">Wyślij</button>
         </form>
     </div>
 </body>

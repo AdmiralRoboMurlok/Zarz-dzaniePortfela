@@ -57,7 +57,14 @@ def wallet(request):
     })
 
 @login_required(login_url="login")
-def deposit(request):
+def deposit(request, pk):
+    if request.method == 'POST':
+        deposit = float(request.POST.get('AddMon'))
+        total = UsersAccount.objects.get(pk=pk)
+        total = total + deposit
+
+        total.save()
+
     return render(request, 'deposit.html')
 
 @login_required(login_url="login")

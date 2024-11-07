@@ -7,15 +7,20 @@
     <link rel="stylesheet" href="../static/css/styles.css">
 </head>
 <body>
-    <header>
-        <h3>Welcome to you wallet</h3>
-        <a href="{% url 'deposit' %}">Deposit</a>
-        <a href="{% url 'withdraw' %}">Withdraw</a>
-        <a href="{% url 'logout' %}">Logout</a>
+    <header id="walletHead">
+        <div id="walletHeadL">
+            <h3>Welcome to you wallet</h3>
+        </div>
+
+        <div id="walletHeadR">
+            <a href="{% url 'deposit/<int:pk>' %}">Deposit</a>
+            <a href="{% url 'withdraw' %}">Withdraw</a>
+            <a href="{% url 'logout' %}">Logout</a>
+        </div>
     </header>
     <div id="leftWal">
         {% for var in variables %}
-            Balance: {{ var.balance }}
+            Balance: {{ var.balance }} <br>
             Balance: {{ var.borrowed }}
         {% endfor %}
     </div>
