@@ -13,7 +13,7 @@
         </div>
 
         <div id="walletHeadR">
-            <a href="{% url 'deposit' %}">Deposit</a>
+            <a href="{% url 'deposit' pk=pk %}">Deposit</a>
             <a href="{% url 'withdraw' %}">Withdraw</a>
             <a href="{% url 'logout' %}">Logout</a>
         </div>
@@ -21,7 +21,7 @@
     <div id="leftWal">
         {% for var in variables %}
             Balance: {{ var.balance }} <br>
-            Balance: {{ var.borrowed }}
+            Borrowed: {{ var.borrowed }}
         {% endfor %}
     </div>
     <div id="rightWal">
