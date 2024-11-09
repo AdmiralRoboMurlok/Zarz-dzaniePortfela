@@ -7,10 +7,25 @@
 </head>
 <body>
     <header>
-        <h3>Withdraw</h3>
-        <a href="{% url 'wallet' %}">Wallet</a>
-        <a href="{% url 'deposit' %}">Deposit</a>
-        <a href="{% url 'logout' %}">Logout</a>
+        <div id="walletHeadL">
+             <h3>Withdraw</h3>
+        </div>
+        <div id="walletHeadR">
+            <a href="{% url 'wallet' %}">Wallet</a>
+            <a href="{% url 'deposit' pk=pk %}">Deposit</a>
+            <a href="{% url 'withdraw' pk=pk %}">Withdraw</a>
+            <a href="{% url 'bank' pk=pk %}">Bank</a>
+            <a href="{% url 'logout' %}">Logout</a>
+        </div>
     </header>
+    <div id="mid">
+        <form method="post" >
+            {% csrf_token %}
+            <label for="Withdraw">Withdraw</label>
+            <input type="number" id="Withdraw" name="Withdraw" required><br><br>
+
+            <button type="submit" value="with">Send</button>
+        </form>
+    </div>
 </body>
 </html>

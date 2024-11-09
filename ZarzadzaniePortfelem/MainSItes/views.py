@@ -76,6 +76,8 @@ def deposit(request, pk):
         user_acc.balance = F('balance') + deposit_amount
         user_acc.save()
 
+        # Tu trzeba dodać, żeby dodawało do historii
+
         user_acc.refresh_from_db()
         messages.success(request, "Money has been added to your account")
         return redirect(wallet)
@@ -83,5 +85,34 @@ def deposit(request, pk):
     return render(request, 'deposit.html', context)
 
 @login_required(login_url="login")
-def withdraw(request):
-    return render(request, 'withdraw.html')
+def withdraw(request, pk):
+    context = {
+        'pk': request.user.pk
+    }
+    if request.method == 'POST':
+        withdraw_amount = float(request.POST.get('Withdraw'))
+        user_acc = get_object_or_404(UsersAccount, id=pk)
+
+        if user_acc.balance >= withdraw_amount:
+            user_acc.balance = F('balance') - withdraw_amount
+            user_acc.save()
+
+            user_acc.refresh_from_db()
+            return redirect(wallet)
+        else:
+            pass #tu dać redirect do failure
+
+    return render(request, 'withdraw.html', context)
+
+@login_required(login_url="login")
+def bank(request):
+    bank_data = Bank.objects.all()
+    context = {
+        'pk': request.user.pk,
+        'bank': bank_data
+    }
+
+    if request.method == 'POST':
+        pass
+
+    return render(request, "Bank.html", context)
