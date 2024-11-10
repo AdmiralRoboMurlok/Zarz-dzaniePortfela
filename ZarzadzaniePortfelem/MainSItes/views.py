@@ -132,8 +132,22 @@ def bank(request, pk):
 @login_required(login_url="login")
 def payback(request, pk):
     if request.method == 'POST':
-        pass
+        payback_amount = float(request.POST.get('payback'))
+        user_acc = get_object_or_404(UsersAccount, id=pk)
+        bank_acc = get_object_or_404(Bank, id=pk)
 
-    return render("payback.html", context={
-        'pk': request.method.pk
+        if user_acc.borrowed >= payback_amount:
+            user_acc.borrowed = F('borrowed') - payback_amount
+            user_acc.save()
+            user_acc.refresh_from_db()
+
+            bank_acc.loans = F('loans') - payback_amount
+            bank_acc.balance = F('balance') + payback_amount
+            bank_acc.save()
+            bank_acc.refresh_from_db()
+
+            return redirect(wallet)
+
+    return render(request, "payback.html", context={
+        'pk': request.user.pk
     })
