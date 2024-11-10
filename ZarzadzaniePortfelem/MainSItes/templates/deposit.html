@@ -16,12 +16,13 @@
             <a href="{% url 'deposit' pk=pk %}">Deposit</a>
             <a href="{% url 'withdraw' pk=pk %}">Withdraw</a>
             <a href="{% url 'bank' pk=pk %}">Bank</a>
+            <a href="{% url 'payback' pk=pk %}">Payback</a>
             <a href="{% url 'logout' %}">Logout</a>
         </div>
     </header>
 
     <div id="mid">
-        <form method="post" action="{% url 'deposit' pk=pk %}">
+        <form method="post">
             {% csrf_token %}
             <label for="AddMon">Deposit money: </label>
             <input type="number" id="AddMon" name="AddMon" required><br><br>

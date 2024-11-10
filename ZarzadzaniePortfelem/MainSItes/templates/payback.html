@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>withdraw</title>
-    <link rel="stylesheet" href="../static/css/styles.css">
+    <title>Payback</title>
 </head>
 <body>
     <header>
-        <div id="walletHeadL">
-             <h3>Withdraw</h3>
+        <div id="depoHeadL">
+            <h3>Payback</h3>
         </div>
-        <div id="walletHeadR">
+
+        <div id="depoHeadR">
             <a href="{% url 'wallet' %}">Wallet</a>
             <a href="{% url 'deposit' pk=pk %}">Deposit</a>
             <a href="{% url 'withdraw' pk=pk %}">Withdraw</a>
@@ -19,13 +19,14 @@
             <a href="{% url 'logout' %}">Logout</a>
         </div>
     </header>
+
     <div id="mid">
         <form method="post">
             {% csrf_token %}
-            <label for="Withdraw">Withdraw</label>
-            <input type="number" id="Withdraw" name="Withdraw" required><br><br>
+            <label for="payback">Payback</label>
+            <input type="number" id="payback" name="payback" required><br><br>
 
-            <button type="submit" value="with">Send</button>
+            <button type="submit">Payback</button>
         </form>
     </div>
 </body>

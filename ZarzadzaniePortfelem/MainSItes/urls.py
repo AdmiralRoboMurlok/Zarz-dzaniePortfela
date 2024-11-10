@@ -7,9 +7,9 @@ urlpatterns = [
     path('login', views.login, name="login"),
     path('profile', views.profile, name="profile"),
     path('logout', views.logout, name="logout"),
-    path('profile', views.profile, name="profile"),
     path('wallet', views.wallet, name="wallet"),
     path('deposit/<int:pk>', views.deposit, name="deposit"),
     path('withdraw/<int:pk>', views.withdraw, name="withdraw"),
-    path('bank/<int:pk>', views.bank, name="bank")
+    path('bank/<int:pk>', views.bank, name="bank"),
+    path('payback/<int:pk>', views.payback, name="payback")
 ]

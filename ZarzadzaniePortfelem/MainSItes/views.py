@@ -105,14 +105,35 @@ def withdraw(request, pk):
     return render(request, 'withdraw.html', context)
 
 @login_required(login_url="login")
-def bank(request):
-    bank_data = Bank.objects.all()
-    context = {
-        'pk': request.user.pk,
-        'bank': bank_data
-    }
+def bank(request, pk):
+    bank_model = Bank.objects.all()
 
+    if request.method == 'POST':
+        loan_amount = float(request.POST.get('takeloan'))
+        user_acc = get_object_or_404(UsersAccount, id=pk)
+        bank_acc = get_object_or_404(Bank, id=pk)
+
+        if bank_acc.balance >= loan_amount:
+            user_acc.borrowed = F('borrowed') + loan_amount
+            user_acc.save()
+            user_acc.refresh_from_db()
+
+            bank_acc.balance = F('balance') - loan_amount
+            bank_acc.save()
+            bank_acc.refresh_from_db()
+
+            return redirect(wallet)
+
+    return render(request, "bank.html", context={
+        'pk': request.user.pk,
+        'bank': bank_model
+    })
+
+@login_required(login_url="login")
+def payback(request, pk):
     if request.method == 'POST':
         pass
 
-    return render(request, "Bank.html", context)
+    return render("payback.html", context={
+        'pk': request.method.pk
+    })
