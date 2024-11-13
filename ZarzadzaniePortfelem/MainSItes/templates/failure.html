@@ -7,9 +7,14 @@
 <body>
     <header>
       <h1>Something went wrong...</h1>
+      <div id="walletHeadR">
+            <a href="{% url 'wallet' %}">Wallet</a>
+            <a href="{% url 'deposit' pk=pk %}">Deposit</a>
+            <a href="{% url 'withdraw' pk=pk %}">Withdraw</a>
+            <a href="{% url 'bank' pk=pk %}">Bank</a>
+            <a href="{% url 'payback' pk=pk %}">Payback</a>
+            <a href="{% url 'logout' %}">Logout</a>
+      </div>
     </header>
-    <div>
-
-    </div>
 </body>
 </html>

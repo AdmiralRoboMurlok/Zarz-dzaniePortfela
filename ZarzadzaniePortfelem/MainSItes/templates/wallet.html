@@ -27,7 +27,11 @@
         {% endfor %}
     </div>
     <div id="rightWal">
-        <p>Histroy</p>
+        <h4>Histroy</h4>
+        {% for var in history %}
+            Opis: {{ var.name }} <br>
+            Date: {{ var.date }} <br> <br>
+        {% endfor %}
     </div>
 </body>
 </html>

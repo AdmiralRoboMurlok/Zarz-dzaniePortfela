@@ -6,6 +6,10 @@ from django.contrib.auth.decorators import login_required
 from . models import *
 from django.db.models import F
 from django.contrib import messages
+import datetime
+
+placeholder_int = 0
+placeholder_string = ""
 
 # Create your views here.
 def main(request):
@@ -55,10 +59,12 @@ def profile(request):
 @login_required(login_url="login")
 def wallet(request):
     Model_Data = UsersAccount.objects.all()
+    local_history = Histroy.objects.all()
 
     context = {
         'pk': request.user.pk,
-        'variables': Model_Data
+        'variables': Model_Data,
+        'history': local_history
     }
 
     return render(request, 'wallet.html', context)
@@ -76,7 +82,14 @@ def deposit(request, pk):
         user_acc.balance = F('balance') + deposit_amount
         user_acc.save()
 
-        # Tu trzeba dodać, żeby dodawało do historii
+        history = Histroy()
+        name = f"Dodano {deposit_amount} do konta"
+        date = datetime.datetime.now()
+
+        history.name = name
+        history.date = date
+        history.save()
+
 
         user_acc.refresh_from_db()
         messages.success(request, "Money has been added to your account")
@@ -100,7 +113,7 @@ def withdraw(request, pk):
             user_acc.refresh_from_db()
             return redirect(wallet)
         else:
-            pass #tu dać redirect do failure
+            return redirect(failure)
 
     return render(request, 'withdraw.html', context)
 
@@ -123,6 +136,8 @@ def bank(request, pk):
             bank_acc.refresh_from_db()
 
             return redirect(wallet)
+        else:
+            return redirect(failure)
 
     return render(request, "bank.html", context={
         'pk': request.user.pk,
@@ -147,7 +162,13 @@ def payback(request, pk):
             bank_acc.refresh_from_db()
 
             return redirect(wallet)
+        else:
+            return redirect(failure)
 
     return render(request, "payback.html", context={
         'pk': request.user.pk
     })
+
+@login_required(login_url="login")
+def failure(request):
+    return render(request, "failure.html",  context = {'pk': request.user.pk,})

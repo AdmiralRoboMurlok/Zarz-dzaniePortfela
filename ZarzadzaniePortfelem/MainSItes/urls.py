@@ -11,5 +11,6 @@ urlpatterns = [
     path('deposit/<int:pk>', views.deposit, name="deposit"),
     path('withdraw/<int:pk>', views.withdraw, name="withdraw"),
     path('bank/<int:pk>', views.bank, name="bank"),
-    path('payback/<int:pk>', views.payback, name="payback")
+    path('payback/<int:pk>', views.payback, name="payback"),
+    path('failure', views.failure, name="failure")
 ]
