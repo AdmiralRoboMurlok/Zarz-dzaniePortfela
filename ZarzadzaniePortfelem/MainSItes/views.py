@@ -92,6 +92,7 @@ def deposit(request, pk):
 
 
         user_acc.refresh_from_db()
+        history.refresh_from_db()
         messages.success(request, "Money has been added to your account")
         return redirect(wallet)
 
@@ -110,7 +111,16 @@ def withdraw(request, pk):
             user_acc.balance = F('balance') - withdraw_amount
             user_acc.save()
 
+            history = Histroy()
+            name = f"Zabrano {withdraw_amount} z konta"
+            date = datetime.datetime.now()
+
+            history.name = name
+            history.date = date
+            history.save()
+
             user_acc.refresh_from_db()
+            history.refresh_from_db()
             return redirect(wallet)
         else:
             return redirect(failure)
@@ -134,6 +144,17 @@ def bank(request, pk):
             bank_acc.balance = F('balance') - loan_amount
             bank_acc.save()
             bank_acc.refresh_from_db()
+
+            history = Histroy()
+            name = f"Wziąłeś {loan_amount} długu"
+            date = datetime.datetime.now()
+
+            history.name = name
+            history.date = date
+            history.save()
+
+            user_acc.refresh_from_db()
+            history.refresh_from_db()
 
             return redirect(wallet)
         else:
@@ -160,6 +181,17 @@ def payback(request, pk):
             bank_acc.balance = F('balance') + payback_amount
             bank_acc.save()
             bank_acc.refresh_from_db()
+
+            history = Histroy()
+            name = f"Spłaciłeś {payback_amount} długu"
+            date = datetime.datetime.now()
+
+            history.name = name
+            history.date = date
+            history.save()
+
+            user_acc.refresh_from_db()
+            history.refresh_from_db()
 
             return redirect(wallet)
         else:
